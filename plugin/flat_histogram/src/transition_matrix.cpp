@@ -15,6 +15,7 @@ TransitionMatrix::TransitionMatrix(const argtype &args) {
   min_visits_ = args_.key("min_visits").dflt("100").integer();
   min_sweeps_ = args_.key("min_sweeps").integer();
   num_blocks_ = args_.key("num_blocks").dflt("30").integer();
+  reset_sweeps_ = args_.key("reset_sweeps").dflt("0").integer();
 }
 
 void TransitionMatrix::update_or_revert(
@@ -168,6 +169,9 @@ void TransitionMatrix::infrequent_update() {
   if (*std::min_element(visits_.begin(), visits_.end()) >= min_visits_) {
     ++num_sweeps_;
     std::fill(visits_.begin(), visits_.end(), 0);
+    if (num_sweeps_ == reset_sweeps_) {
+       increment_phase();
+    }
   }
 
   DEBUG("check if complete");

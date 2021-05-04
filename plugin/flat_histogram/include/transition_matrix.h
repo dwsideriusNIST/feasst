@@ -40,6 +40,7 @@ class TransitionMatrix : public Bias {
 
   /// Return the minimum sweeps required for completion.
   int min_sweeps() const { return min_sweeps_; }
+  int reset_sweeps() const { return reset_sweeps_; }
 
   void set_num_iterations(const int sweeps) override;
   const LnProbability& ln_prob() const override {
@@ -69,6 +70,7 @@ class TransitionMatrix : public Bias {
   int num_sweeps_ = 0;
   int min_sweeps_ = 0;
   int num_blocks_ = 30;
+  int reset_sweeps_ = 0;
 
   std::vector<TransitionMatrix> blocks_;
   bool is_block_ = false;
