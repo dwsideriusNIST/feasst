@@ -161,38 +161,41 @@ void PerturbBranch::solve_branch_(
 //  INFO("a " << a);
 //  INFO("b " << b);
 //  INFO("c " << c);
-  quadratic_equation(a, b, c, &discrim, &ans1, &ans2);
+//  quadratic_equation(a, b, c, &discrim, &ans1, &ans2);
 //  INFO("discrim " << discrim);
 //  INFO("ans1 " << ans1);
 //  INFO("ans2 " << ans2);
-  if (discrim < 0) {
+//  if (discrim < 0) {
 //    INFO("discrim " << discrim);
-    if ( (std::sqrt(fabsl(discrim))/2/fabsl(a) < 1000*std::sqrt(NEAR_ZERO)) ||
-         fabsl(discrim) < 10000*NEAR_ZERO) {
-      // within double preicison, the discriminant is zero
-      ans1 = ans2 = -b/2/a;
-    } else {
-      std::streamsize ss = std::cout.precision();
-      std::cout << std::setprecision(std::numeric_limits<long double>::digits10+2)
-           << "c143 " << c143 << " c243 " << c243 << std::endl;
-      std::cout << "x1 " << x1 << " " << y1 << " " << z1 << std::endl;
-      std::cout << "x2 " << x2 << " " << y2 << " " << z2 << std::endl;
-      std::cout << "A " << A << " H " << H << " B " << B << " C " << C
-           << " D " << D << std::endl;
-      std::cout << "ans1 " << ans1 << " ans2 " << ans2 << std::endl;
-      std::cout << "discrim " << discrim << std::endl;
-      std::cout << "a " << a << " b " << b << " c " << c << std::endl;
-      std::cout << std::setprecision(ss);
-      std::cout << "tol " << std::sqrt(NEAR_ZERO) << " rel "
-           << std::sqrt(fabsl(discrim))/2/fabsl(a) << std::endl;
-      std::cout << "tol " << 10*NEAR_ZERO << " rel " << fabsl(discrim)
-           << std::endl;
-      FATAL("imaginary branch");
-    }
-  }
-  if (random->coin_flip()) {
-    ans1 = ans2;
-  }
+//    if ( (std::sqrt(fabsl(discrim))/2/fabsl(a) < 1000*std::sqrt(NEAR_ZERO)) ||
+//         fabsl(discrim) < 10000*NEAR_ZERO) {
+//      // within double preicison, the discriminant is zero
+//      ans1 = ans2 = -b/2/a;
+//    } else {
+//      std::streamsize ss = std::cout.precision();
+//      std::cout << std::setprecision(std::numeric_limits<long double>::digits10+2)
+//           << "c143 " << c143 << " c243 " << c243 << std::endl;
+//      std::cout << "x1 " << x1 << " " << y1 << " " << z1 << std::endl;
+//      std::cout << "x2 " << x2 << " " << y2 << " " << z2 << std::endl;
+//      std::cout << "A " << A << " H " << H << " B " << B << " C " << C
+//           << " D " << D << std::endl;
+//      std::cout << "ans1 " << ans1 << " ans2 " << ans2 << std::endl;
+//      std::cout << "discrim " << discrim << std::endl;
+//      std::cout << "a " << a << " b " << b << " c " << c << std::endl;
+//      std::cout << std::setprecision(ss);
+//      std::cout << "tol " << std::sqrt(NEAR_ZERO) << " rel "
+//           << std::sqrt(fabsl(discrim))/2/fabsl(a) << std::endl;
+//      std::cout << "tol " << 10*NEAR_ZERO << " rel " << fabsl(discrim)
+//           << std::endl;
+//      FATAL("imaginary branch");
+//    }
+//  }
+//  if (random->coin_flip()) {
+//    ans1 = ans2;
+//  }
+
+// THIS IS THE TEMPORARY FIX FOR PLANAR MOLECULES
+  ans1 = ans2 = -b/2/a;
 
   // (x,y,z) is unit vector pointing in direction of l3 bond
   *x3 = ans1;
